@@ -1,1 +1,19 @@
+#container
+{
+    background-color: red;
+    width:1500px;
+}
 
+#up_place
+{
+    background-color: blue;
+    width:1400px;
+    height: 500px;
+}
+
+.card
+{
+    width:122px;
+    height: 190px;
+    
+}
