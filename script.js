@@ -24,7 +24,7 @@ function save()
     
     for(i=1; i<5; i++)
     {
-        // 's' are spades, 'h' are hearts, 'c' are clubs, 'd' are 'diamonds' 
+        // 's' are spades, 'h' are hearts, 'c' are clubs, 'd' are 'diamonds'  
         
         if(i==1) symbol='c';
         else if(i==2) symbol='d';
