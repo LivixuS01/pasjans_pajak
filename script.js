@@ -1,4 +1,5 @@
 const cards=new Array(104);
+const rand_cards= new Array(104); // This is array with id cards, after drawing function
 class card{
     constructor(symbol, number, hide, usedd, src_img, id_card){
         this.symbol=symbol;
@@ -23,7 +24,7 @@ function save()
     
     for(i=1; i<5; i++)
     {
-        // 's' are spades, 'h' are hearts, 'c' are clubs, 'd' are "diamonds"
+        // 's' are spades, 'h' are hearts, 'c' are clubs, 'd' are 'diamonds'
         
         if(i==1) symbol='c';
         else if(i==2) symbol='d';
@@ -38,4 +39,32 @@ function save()
             }
     }
   }
+}
+
+function drawing()
+{
+    let hm_numbers = 0, next; // hm == how many
+    for (i=0; i<104; i++)
+    {
+      do
+      {
+        let r = Math.floor(Math.random()*104);
+        next = true;
+        for (j=1; j<=hm_numbers; j++)
+        {
+          if (r == rand_cards[j]) next = false;
+        }
+        if (next == true)
+        {
+            hm_numbers++;
+          rand_cards[hm_numbers-1] = r;
+        }
+      }
+      while(next!=true);
+    } 
+}
+
+function deal_cards() 
+{
+
 }
