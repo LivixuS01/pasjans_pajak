@@ -8,12 +8,18 @@
 {
     background-color: blue;
     width:1400px;
-    height: 500px;
+}
+
+.column
+{
+    width:130px;
+    float: left;
 }
 
 .card
 {
-    width:122px;
+    width:125px;
     height: 190px;
-    
+    margin-bottom:-150px;
 }
+
