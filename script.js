@@ -86,6 +86,7 @@ function deal_cards()
             {
                 cards[nrA].card_up=cards[nrA_last].id_card;
                 cards[nrA].place=hm_columns;
+                cards[nrA].hide=false;
                 
                 hm_incolumn=0;
                 hm_columns++;
@@ -93,7 +94,6 @@ function deal_cards()
             else if(hm_incolumn==0)
             {
                 cards[nrA].card_down=cards[nrA_next].id_card;
-                cards[nrA].hide=true;
                 cards[nrA].place=hm_columns;
                 hm_incolumn++;
             }
@@ -101,7 +101,6 @@ function deal_cards()
             {
                 cards[nrA].card_up=cards[nrA_last].id_card;
                 cards[nrA].card_down=cards[nrA_next].id_card;
-                cards[nrA].hide=true;
                 cards[nrA].place=hm_columns;
                 hm_incolumn++;
             }
@@ -113,6 +112,7 @@ function deal_cards()
             {
                 cards[nrA].card_up=cards[nrA_last].id_card;
                 cards[nrA].place=hm_columns;
+                cards[nrA].hide=false;
                 
                 hm_incolumn=0;
                 hm_columns++;
@@ -121,7 +121,6 @@ function deal_cards()
             {
                 
                 cards[nrA].card_down=cards[nrA_next].id_card;
-                cards[nrA].hide=true;
                 cards[nrA].place=hm_columns;
                 hm_incolumn++;
             }
@@ -129,13 +128,11 @@ function deal_cards()
             {
                 cards[nrA].card_up=cards[nrA_last].id_card;
                 cards[nrA].card_down=cards[nrA_next].id_card;
-                cards[nrA].hide=true;
                 cards[nrA].place=hm_columns;
                 hm_incolumn++;
             }
         }
     }
-    console.log(cards);
 }
 
 function show_cards()
@@ -186,7 +183,91 @@ function show_cards()
         down_place.innerHTML=div_cards;
 }
 
-function move_card(card)
+function ad_ev()
 {
+    for(i=50; i<104; i++)
+    {
+        let idd=rand_cards[i];
+        let cardd="card"+cards[idd].id_card;
+        let el=document.getElementById(cardd);
+        el.addEventListener('mouseenter',function(){check(idd);});
+        el.addEventListener('mouseleave',function(){
+            document.getElementById("card"+idd).classList.remove("chosen_card");
+        })
+    }
+}
 
+function check(tcard)
+{
+//alert(cards[tcard].hide);
+    
+    if(cards[tcard].hide==false)
+    {
+        let idunder=cards[tcard].card_down;
+        if(idunder!=-1)
+        {
+        let undernumber=cards[idunder].number;
+        let symbolunder=cards[idunder].symbol;
+        let symbol=cards[tcard].symbol;
+        let number=cards[tcard].number;
+        }
+        
+        if(idunder==-1)
+        {
+            document.getElementById("card"+tcard).classList.add("chosen_card");
+            move_card(tcard);
+        }
+        //else if((number==undernumber-1)&&(symbol==symbolunder))
+        //{
+            //while((number==undernumber-1)&&(symbol==symbolunder))
+            //{
+
+            //}
+        //}
+    }
+}
+
+function move_card(tcard)
+{
+    let a=0, b=0;
+    let idd="card"+tcard;
+    let elem = document.querySelector('#container'), 
+    div = document.getElementById(idd), 
+    x = 0, 
+    y = 0, 
+    mousedown = false;
+ 
+// div event mousedown 
+div.addEventListener('mousedown', function (e) { 
+    // set mouse state to true 
+    mousedown = true; 
+    // subtract offset 
+    x = e.clientX; 
+    y = e.clientY;
+    e.preventDefault(); // prevent browser's default drag behavior 
+}, true); 
+ 
+// div event mouseup 
+document.addEventListener('mouseup', function (e) { // Notice the change here 
+    // set mouse state to false 
+    mousedown = false; 
+    div.style.transition="0.3s";
+    div.style.transform="";
+    div.style.position="";
+   setTimeout(function(){
+    div.style.transition="0s";
+   },300);
+}, true); 
+ 
+// element mousemove to stop 
+elem.addEventListener('mousemove', function (e) { 
+    // Is mouse pressed? 
+    if (mousedown) { 
+        // now we calculate the difference 
+        div.style.position="absolute";
+        a=e.clientX-x; 
+        b=e.clientY-y;
+        div.style.transform="translate("+a+"px, "+b+ "px)";
+    } 
+}, true); 
 }

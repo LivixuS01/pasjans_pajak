@@ -2,6 +2,7 @@
 {
     background-color: red;
     width:1500px;
+    position: relative;
 }
 
 #up_place
@@ -12,14 +13,33 @@
 
 .column
 {
-    width:130px;
+    width:132px;
     float: left;
+    margin-left:5px;
+    margin-right: 5px;
+    height:1300px;
+    justify-content: center;
+    text-align: center;
 }
 
 .card
 {
-    width:125px;
+    width:122px;
     height: 190px;
     margin-bottom:-150px;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+   
 }
 
+.chosen_card
+{
+    width:122px;
+}
+
+.chosen_card:hover
+{
+    width:122px;
+   opacity:0.8;
+}
